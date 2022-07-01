@@ -17,7 +17,7 @@ const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <FontLoader>
       <UserProvider supabaseClient={Supabase}>
         <StatusBar barStyle={getStatusBar(scheme)} />
-        <View className="h-full overflow-hidden bg-accent">
+        <View className="h-full overflow-hidden bg-dark">
           <>{children}</>
         </View>
       </UserProvider>
