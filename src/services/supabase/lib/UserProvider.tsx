@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppState, AppStateStatus, NativeEventSubscription, Platform } from 'react-native'
+import { AppState, AppStateStatus, NativeEventSubscription, Platform } from 'react-native';
 import { SupabaseClient, User } from '@supabase/supabase-js';
 
 export type UserFetcher = (url: string) => Promise<{
@@ -31,20 +31,14 @@ const handleError = async (error: any) => {
   }
   const err = await error.json();
   return {
-    message:
-      err.msg ||
-      err.message ||
-      err.error_description ||
-      err.error ||
-      JSON.stringify(err),
-    status: error?.status || 500
+    message: err.msg || err.message || err.error_description || err.error || JSON.stringify(err),
+    status: error?.status || 500,
   };
 };
 
 const userFetcher: UserFetcher = async (url) => {
   const response = await fetch(url).catch(() => undefined);
-  if (!response)
-    return { user: null, accessToken: null, error: 'Request failed' };
+  if (!response) return { user: null, accessToken: null, error: 'Request failed' };
   return response.ok
     ? response.json()
     : { user: null, accessToken: null, error: await handleError(response) };
@@ -60,9 +54,9 @@ export interface Props {
   [propName: string]: any;
 }
 
-const host = Platform.OS === 'web' ? '' : process.env.HOST
-const CALLBACK_URL = `${host}/api/auth/callback`
-const PROFILE_URL = `${host}/api/auth/user`
+const host = Platform.OS === 'web' ? '' : process.env.HOST;
+const CALLBACK_URL = `${host}/api/auth/callback`;
+const PROFILE_URL = `${host}/api/auth/user`;
 
 export const UserProvider = (props: Props) => {
   const {
@@ -71,7 +65,7 @@ export const UserProvider = (props: Props) => {
     profileUrl = PROFILE_URL,
     user: initialUser = null,
     fetcher = userFetcher,
-    autoRefreshToken = true
+    autoRefreshToken = true,
   } = props;
   const [user, setUser] = React.useState<User | null>(initialUser);
   const [accessToken, setAccessToken] = React.useState<string | null>(null);
@@ -87,7 +81,7 @@ export const UserProvider = (props: Props) => {
           if (refreshTokenTimer) clearTimeout(refreshTokenTimer);
           refreshTokenTimer = setTimeout(
             checkSession,
-            RETRY_INTERVAL ** networkRetries * 100 // exponential backoff
+            RETRY_INTERVAL ** networkRetries * 100, // exponential backoff
           );
           return;
         }
@@ -130,35 +124,33 @@ export const UserProvider = (props: Props) => {
 
   React.useEffect(() => {
     handleVisibilityChange('active');
-    let subscription: NativeEventSubscription
+    let subscription: NativeEventSubscription;
     if (autoRefreshToken) {
-      subscription = AppState.addEventListener('change', handleVisibilityChange)
+      subscription = AppState.addEventListener('change', handleVisibilityChange);
     }
-    const { data: authListener } = supabaseClient.auth.onAuthStateChange(
-      async (event, session) => {
-        if (event === 'TOKEN_REFRESHED') return; // ignore this as we're refreshing tokens server-side.
-        setIsLoading(true);
-        // Forward session from client to server where it is set in a Cookie.
-        // NOTE: this will eventually be removed when the Cookie can be set differently.
-        await fetch(callbackUrl, {
-          method: 'POST',
-          headers: new Headers({ 'Content-Type': 'application/json' }),
-          credentials: 'same-origin',
-          body: JSON.stringify({ event, session })
-        }).then((res) => {
-          if (!res.ok) {
-            const error = new Error(`The request to ${callbackUrl} failed`);
-            setError(error);
-          }
-        });
-        // Fetch the user from the API route
-        await checkSession();
-        setIsLoading(false);
-      }
-    );
+    const { data: authListener } = supabaseClient.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'TOKEN_REFRESHED') return; // ignore this as we're refreshing tokens server-side.
+      setIsLoading(true);
+      // Forward session from client to server where it is set in a Cookie.
+      // NOTE: this will eventually be removed when the Cookie can be set differently.
+      await fetch(callbackUrl, {
+        method: 'POST',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        credentials: 'same-origin',
+        body: JSON.stringify({ event, session }),
+      }).then((res) => {
+        if (!res.ok) {
+          const error = new Error(`The request to ${callbackUrl} failed`);
+          setError(error);
+        }
+      });
+      // Fetch the user from the API route
+      await checkSession();
+      setIsLoading(false);
+    });
 
     return () => {
-      subscription?.remove()
+      subscription?.remove();
       authListener?.unsubscribe();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -169,7 +161,7 @@ export const UserProvider = (props: Props) => {
     user,
     accessToken,
     error,
-    checkSession
+    checkSession,
   };
   return <UserContext.Provider value={value} {...props} />;
 };

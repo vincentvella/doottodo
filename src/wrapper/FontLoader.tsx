@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { useFonts } from "expo-font";
-import * as SplashScreen from 'expo-splash-screen'
+import * as React from 'react';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { Platform } from 'react-native';
 
-const fontName = 'Metropolis'
+const fontName = 'Metropolis';
 
 const FontLoader: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loaded, error] = useFonts({
@@ -12,25 +12,25 @@ const FontLoader: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   React.useEffect(() => {
     if (!loaded && Platform.OS !== 'web') {
-      SplashScreen.preventAutoHideAsync()
+      SplashScreen.preventAutoHideAsync();
     }
-  }, [loaded])
+  }, [loaded]);
 
   React.useEffect(() => {
     if (loaded && Platform.OS !== 'web') {
-      SplashScreen.hideAsync()
+      SplashScreen.hideAsync();
     }
-  }, [loaded])
+  }, [loaded]);
 
   React.useEffect(() => {
     if (error) {
-      console.log(error)
+      console.log(error);
     }
-  }, [error])
+  }, [error]);
 
-  if (!loaded && Platform.OS !== 'web') return null
+  if (!loaded && Platform.OS !== 'web') return null;
 
-  return <>{children}</>
-}
+  return <>{children}</>;
+};
 
-export default FontLoader
+export default FontLoader;

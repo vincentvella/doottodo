@@ -1,5 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
+const theme = require('./src/theme.ts')
 
+const { colors } = theme
 
 module.exports = {
   content: [
@@ -8,13 +10,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        accent: '#FCAB40',
-        primary: '#40C7FC',
-        secondary: '#B740FC',
-        light: '#F8F8F8',
-        dark: '#171717',
-      },
+      colors,
       fontFamily: {
         sans: ['Metropolis', ...defaultTheme.fontFamily.sans]
       }

@@ -1,2 +1,1 @@
-import "nativewind/types.d";
-
+import 'nativewind/types.d';

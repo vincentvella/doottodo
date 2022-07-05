@@ -1,10 +1,12 @@
-import React from 'react';
-import Demo from '../src/Demo';
+import { useUser } from '~/services/supabase'
+import * as React from 'react'
+import Home from '~/screens/Home'
+import Landing from '~/screens/Landing'
 
-const App = () => {
-  return (
-    <Demo />
-  );
-};
+const Index = () => {
+  const { user, error } = useUser()
 
-export default App;
+  return user ? <Home /> : <Landing />
+}
+
+export default Index
