@@ -1,16 +1,14 @@
 import React from 'react';
 import Wrapper from '~/wrapper/Wrapper';
-import { SafeAreaView } from 'react-native';
 import Navigators from '~/navigators';
+import { SafeAreaView } from '~/react-native';
 
-const App = () => {
-  return (
-    <Wrapper>
-      <SafeAreaView>
-        <Navigators />
-      </SafeAreaView>
-    </Wrapper>
-  );
-};
+const App = () => (
+  <Wrapper>
+    <SafeAreaView className="h-full overflow-hidden bg-light dark:bg-dark">
+      <Navigators />
+    </SafeAreaView>
+  </Wrapper>
+);
 
 export default App;

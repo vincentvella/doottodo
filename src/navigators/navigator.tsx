@@ -5,7 +5,7 @@ import UnAuthenticated, { linkingConfig as unauthenticatedLinkingConfig } from '
 import { useUser } from '~/services/supabase';
 import { useColorScheme } from 'nativewind';
 
-const colors = require('~/theme');
+const { colors } = require('~/theme');
 
 const prefixes = ['doottodo://'];
 
@@ -34,7 +34,7 @@ const Navigator = () => {
       linking={{ prefixes, config: user ? { screens: {} } : unauthenticatedLinkingConfig }}
       theme={mapDripsyThemeToReactNavigation(theme)}
     >
-      {user ? <Authenticated /> : <UnAuthenticated />}
+      {!!user ? <Authenticated /> : <UnAuthenticated />}
     </NavigationContainer>
   );
 };

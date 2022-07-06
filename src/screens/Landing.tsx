@@ -1,10 +1,14 @@
 import React from 'react';
-import { View, Text } from '~/react-native';
+import { View, Text, Image } from '~/react-native';
 
-const Demo = () => (
-  <View className="bg-dark">
-    <Text className=" text-cyan-400">Heyyo</Text>
-  </View>
-);
+const Landing = () => {
+  return (
+    <View className="w-full">
+      <Image className="w-32 h-32 self-center" source={require('../../assets/icon.png')} />
+      <Text className="text-light self-center text-5xl">DootTodo</Text>
+      <Text className="text-light self-center text-3xl">Get More Done</Text>
+    </View>
+  );
+};
 
-export default Demo;
+export default Landing;
