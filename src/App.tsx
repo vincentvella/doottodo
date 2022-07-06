@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from '~/wrapper/Wrapper';
+import Wrapper from '~/utils/wrapper/Wrapper';
 import Navigators from '~/navigators';
 import { SafeAreaView } from '~/react-native';
 

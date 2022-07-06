@@ -2,9 +2,11 @@ import 'cross-fetch/polyfill';
 import 'raf/polyfill';
 import 'setimmediate';
 
+import '../styles.css';
+
 import { AppProps } from 'next/app';
 import React from 'react';
-import Wrapper from '../src/wrapper/Wrapper';
+import Wrapper from '~/utils/wrapper/Wrapper';
 
 // @ts-expect-error
 global.setImmediate = requestAnimationFrame;

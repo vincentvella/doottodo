@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import { ActionContextProvider } from './ActionContext';
 import { useSetFormData, useSetInitialValues, useUpdateSchema } from './hooks';
 
-type FormProps<T extends object, Schema extends yup.SchemaOf<T>> = {
+export type FormProps<T extends object, Schema extends yup.SchemaOf<T>> = {
   schema: Schema;
   onSuccess: (data: T) => void | Promise<void>;
   onError: (error: yup.ValidationError) => void | Promise<void>;

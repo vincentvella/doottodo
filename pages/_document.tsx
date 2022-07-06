@@ -72,6 +72,7 @@ export class Document extends NextDocument {
           <link rel="preload" href="/fonts/Metropolis-Regular.otf" as="font" crossOrigin="" />
         </Head>
         <body>
+          <script src="noflash.js" />
           <Main />
           <NextScript />
         </body>

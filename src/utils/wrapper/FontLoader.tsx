@@ -7,7 +7,7 @@ const fontName = 'Metropolis';
 
 const FontLoader: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loaded, error] = useFonts({
-    [fontName]: require(`../../public/fonts/Metropolis-Regular.otf`),
+    [fontName]: require(`../../../public/fonts/Metropolis-Regular.otf`),
   });
 
   React.useEffect(() => {

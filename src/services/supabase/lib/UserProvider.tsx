@@ -52,6 +52,7 @@ export interface Props {
   fetcher?: UserFetcher;
   autoRefreshToken?: boolean;
   [propName: string]: any;
+  children: React.ReactNode;
 }
 
 const host = Platform.OS === 'web' ? '' : process.env.HOST;

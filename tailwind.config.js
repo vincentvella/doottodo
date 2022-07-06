@@ -1,5 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
-const theme = require('./src/theme.ts')
+const theme = require('./src/theme.js')
 
 const { colors } = theme
 
