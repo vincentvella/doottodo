@@ -69,7 +69,39 @@ export class Document extends NextDocument {
         <Head>
           <link rel="shortcut icon" href="/favicon.ico" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <link rel="preload" href="/fonts/Metropolis-Black.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-BlackItalic.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-Bold.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-BoldItalic.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-ExtraBold.otf" as="font" crossOrigin="" />
+          <link
+            rel="preload"
+            href="/fonts/Metropolis-ExtraBoldItalic.otf"
+            as="font"
+            crossOrigin=""
+          />
+          <link rel="preload" href="/fonts/Metropolis-ExtraLight.otf" as="font" crossOrigin="" />
+          <link
+            rel="preload"
+            href="/fonts/Metropolis-ExtraLightItalic.otf"
+            as="font"
+            crossOrigin=""
+          />
+          <link rel="preload" href="/fonts/Metropolis-Light.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-LightItalic.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-Medium.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-MediumItalic.otf" as="font" crossOrigin="" />
           <link rel="preload" href="/fonts/Metropolis-Regular.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-RegularItalic.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-SemiBold.otf" as="font" crossOrigin="" />
+          <link
+            rel="preload"
+            href="/fonts/Metropolis-SemiBoldItalic.otf"
+            as="font"
+            crossOrigin=""
+          />
+          <link rel="preload" href="/fonts/Metropolis-Thin.otf" as="font" crossOrigin="" />
+          <link rel="preload" href="/fonts/Metropolis-ThinItalic.otf" as="font" crossOrigin="" />
         </Head>
         <body>
           <script src="noflash.js" />

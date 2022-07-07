@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'solito/link';
 import GlyphButton from '~/components/GlyphButton';
 import { View, Text, Image } from '~/react-native';
 import { AuthButtonConfigs } from '~/static/auth-button-configs';
@@ -15,6 +16,14 @@ const Landing = () => {
         {AuthButtonConfigs.map(({ route, ...props }) => (
           <GlyphButton {...props} key={route} route={`/sign-in/${route}`} />
         ))}
+      </View>
+      <View className="absolute bottom-0 p-4 w-full">
+        <View className="flex-row self-center">
+          <Text className="text-xl">Already have an account?&nbsp;</Text>
+          <Link href="/sign-in">
+            <Text className="text-xl font-bold">Sign In</Text>
+          </Link>
+        </View>
       </View>
     </>
   );
