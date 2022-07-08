@@ -3,9 +3,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Text, View } from '~/react-native';
 import { Glyph } from '~/types/glyphs';
 import { Link } from 'solito/link';
-import { useColorScheme } from 'nativewind';
-
-const { colors } = require('~/theme');
+import useElementColor from '~/hooks/useElementColor';
 
 export type GlyphButtonProps = {
   title: string;
@@ -14,8 +12,7 @@ export type GlyphButtonProps = {
 };
 
 const GlyphButton: React.FC<GlyphButtonProps> = ({ route, logo, title }) => {
-  const { colorScheme } = useColorScheme();
-  const color = colorScheme === 'light' ? colors.dark : colors.light;
+  const color = useElementColor();
   return (
     <View className=" space-2 ">
       <Link href={route}>

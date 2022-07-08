@@ -4,8 +4,8 @@ import Authenticated from './authenticated';
 import UnAuthenticated, { linkingConfig as unauthenticatedLinkingConfig } from './unauthenticated';
 import { useUser } from '~/services/supabase';
 import { useColorScheme } from 'nativewind';
-
-const { colors } = require('~/theme');
+import { colors } from '~/theme';
+import useElementColor from '~/hooks/useElementColor';
 
 const prefixes = ['doottodo://'];
 
@@ -19,15 +19,15 @@ const mapDripsyThemeToReactNavigation = ({ colors }: Partial<Theme>): Theme => (
 
 const Navigator = () => {
   const { user } = useUser();
-  const { colorScheme } = useColorScheme();
+  const color = useElementColor(true);
   const theme: Partial<Theme> = React.useMemo(
     () => ({
       colors: {
         ...DefaultTheme.colors,
-        background: colorScheme === 'light' ? colors.light : colors.dark,
+        background: color,
       },
     }),
-    [colorScheme],
+    [color],
   );
   return (
     <NavigationContainer

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { BackgroundColor as EBGColor } from '@bacons/expo-background-color';
-
-const { colors } = require('~/theme');
+import { colors } from '~/theme';
 
 const BackgroundColor = () => {
   if (Platform.OS === 'web') {

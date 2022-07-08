@@ -9,7 +9,7 @@ module.exports = {
       // Now you can provide platform specific values
       ios: 'platformColor(systemRed)',
       android: 'platformColor(?android:colorError)',
-      DEFAULT: '#ef4444',
+      default: '#ef4444',
     },
   },
 };

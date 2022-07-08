@@ -1,9 +1,8 @@
 import React from 'react';
-import { LayoutChangeEvent } from 'react-native';
+import { LayoutChangeEvent, Platform } from 'react-native';
 import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { AnimatedText } from '~/react-native';
-
-const { colors } = require('~/theme');
+import { colors } from '~/theme';
 
 type Props = React.ComponentPropsWithRef<typeof AnimatedText> & {
   /**
@@ -58,7 +57,7 @@ const HelperText: React.FC<Props> = ({ visible, type, ...rest }) => {
     <AnimatedText
       {...rest}
       onLayout={handleTextLayout}
-      style={[animatedStyle, type === 'error' && { color: colors.error }]}
+      style={[animatedStyle, type === 'error' && { color: Platform.select(colors.error) }]}
     >
       {rest.children}
     </AnimatedText>
