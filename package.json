@@ -10,6 +10,7 @@
     "gen:migration": "source .env && DATABASE_URL=$MIGRATE_DATABASE_URL yarn prisma migrate dev"
   },
   "dependencies": {
+    "@bacons/expo-background-color": "^1.0.2",
     "@expo/html-elements": "^0.1.0",
     "@expo/metro-config": "^0.3.18",
     "@expo/next-adapter": "^4.0.7",

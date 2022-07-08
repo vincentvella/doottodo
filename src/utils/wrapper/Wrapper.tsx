@@ -4,6 +4,7 @@ import { View } from '~/react-native';
 import FontLoader from './FontLoader';
 import Supabase, { UserProvider } from '~/services/supabase';
 import StyleLoader from './StyleLoader';
+import BackgroundColor from './BackgroundColor';
 
 const getStatusBar = (scheme: ColorSchemeName): StatusBarStyle =>
   scheme === 'dark' ? 'dark-content' : 'light-content';
@@ -14,6 +15,7 @@ const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <StyleLoader>
       <FontLoader>
         <UserProvider supabaseClient={Supabase}>
+          <BackgroundColor />
           <StatusBar barStyle={getStatusBar(scheme)} />
           <View className="h-full overflow-hidden bg-light dark:bg-dark">
             <>{children}</>

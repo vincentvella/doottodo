@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'solito/link';
-import GlyphButton from '~/components/GlyphButton';
+import AuthButtons from '~/components/AuthButtons';
 import { View, Text, Image } from '~/react-native';
-import { AuthButtonConfigs } from '~/static/auth-button-configs';
 
 const Landing = () => {
   return (
@@ -12,11 +11,7 @@ const Landing = () => {
         <Text className="self-center text-5xl">DootTodo</Text>
         <Text className="self-center text-3xl">Get More Done</Text>
       </View>
-      <View className="max-w-2xl w-full self-center p-8">
-        {AuthButtonConfigs.map(({ route, ...props }) => (
-          <GlyphButton {...props} key={route} route={`/sign-in/${route}`} />
-        ))}
-      </View>
+      <AuthButtons routePrefix="/sign-up" />
       <View className="absolute bottom-0 p-4 w-full">
         <View className="flex-row self-center">
           <Text className="text-xl">Already have an account?&nbsp;</Text>

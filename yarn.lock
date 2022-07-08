@@ -1268,6 +1268,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@bacons/expo-background-color@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@bacons/expo-background-color/-/expo-background-color-1.0.2.tgz#6e8929203cf6cccd6bc044146477b9cdb0433724"
+  integrity sha512-I7797crohIdu/2Vt8kN7Vf4c6xCoASczeIA1oTd4JLUYiMhmzm0ocwEVXrNzXjwwbHHeuF+OOkLM8qSQC4lxoA==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
