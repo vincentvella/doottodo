@@ -7,7 +7,6 @@ import { Text } from '~/react-native';
 const SignIn = () => {
   return (
     <>
-      <BackButton />
       <Header title="Sign In" />
       <AuthButtons routePrefix="/sign-in" />
     </>

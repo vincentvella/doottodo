@@ -14,6 +14,7 @@ import {
 } from './state/atoms';
 import { fieldData, fieldError } from './state/selectors';
 import { initialFormState } from './state/state';
+import FormError from './error';
 
 // Form Actions
 export const useResetForm = () => {
@@ -46,24 +47,29 @@ export const useSubmit = () => {
         updateIsValidating(false);
       }
       await onSuccess(data);
+      reset();
     } catch (err: unknown) {
-      if (err && typeof err === 'object' && 'name' in err) {
-        const error = err as yup.ValidationError;
-        if (error.inner) {
-          const formErrors = error.inner.reduce((obj, innerError) => {
-            if (innerError.path) {
-              obj[innerError.path] = innerError.message;
-            }
-            return obj;
-          }, {} as Record<string, string>);
-          updateFormErrors(formErrors);
-          onError(error);
+      if (err && typeof err === 'object') {
+        if ('code' in err) {
+          const error = err as FormError;
+          updateFormErrors({ _form: error.message });
+        } else if ('name' in err) {
+          const error = err as yup.ValidationError;
+          if (error.inner) {
+            const formErrors = error.inner.reduce((obj, innerError) => {
+              if (innerError.path) {
+                obj[innerError.path] = innerError.message;
+              }
+              return obj;
+            }, {} as Record<string, string>);
+            updateFormErrors(formErrors);
+            onError(error);
+          }
         }
       }
     } finally {
       updateIsValidating(false);
       updateIsSubmitting(false);
-      reset();
     }
   }, [
     onSuccess,

@@ -52,13 +52,9 @@ const HelperText: React.FC<Props> = ({ visible, type, ...rest }) => {
       opacity: shown.value,
     };
   });
-
+  const className = type === 'error' ? `text-${Platform.select(colors.error)}` : '';
   return (
-    <AnimatedText
-      {...rest}
-      onLayout={handleTextLayout}
-      style={[animatedStyle, type === 'error' && { color: Platform.select(colors.error) }]}
-    >
+    <AnimatedText {...rest} className={className} onLayout={handleTextLayout} style={animatedStyle}>
       {rest.children}
     </AnimatedText>
   );

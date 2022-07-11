@@ -1,10 +1,7 @@
-const { withPlatformTheme } = require("nativewind")
 const defaultTheme = require("tailwindcss/defaultTheme")
-const theme = require('./src/theme.js')
+const { colors } = require('./src/theme')
 
-const { colors } = theme
-
-module.exports = withPlatformTheme({
+module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./pages/**/*.{js,jsx,ts,tsx}"
@@ -34,4 +31,4 @@ module.exports = withPlatformTheme({
       }
     }
   }
-})
+}

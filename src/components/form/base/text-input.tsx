@@ -24,8 +24,9 @@ const TextInput = React.forwardRef<Record<string, unknown>, TextFieldProps>(
           {...props}
           ref={ref}
           value={value}
+          style={{ lineHeight: 18 }}
           onChangeText={setValue}
-          className="border border-light rounded p-2"
+          className="border border-light rounded text-lg p-3"
         />
         <HelperText visible={!!error} type="error">
           {error}
