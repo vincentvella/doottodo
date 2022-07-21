@@ -1,5 +1,10 @@
-import { OpaqueColorValue, Platform, PlatformColor } from 'react-native';
+import { OpaqueColorValue, Platform, PlatformColor as RNPlatformColor } from 'react-native';
 import { colors } from '~/theme';
+import noop from './noop';
+
+const PlatformColor = (Platform.OS === 'web' ? noop : RNPlatformColor) as (
+  color: string,
+) => OpaqueColorValue;
 
 export const platformColor = (color: string) => {
   const colorRef = colors[color];
