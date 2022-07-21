@@ -1,12 +1,15 @@
-import { useUser } from '~/services/supabase'
-import * as React from 'react'
-import Home from '~/screens/Home'
-import Landing from '~/screens/Landing'
+import * as React from 'react';
+import Home from '~/screens/Home';
+import Landing from '~/screens/Landing';
+import { User } from '@supabase/auth-helpers-nextjs';
+import { dual } from '../server/dual';
 
-const Index = () => {
-  const { user, error } = useUser()
+type Props = {
+  user: User | null;
+};
 
-  return user ? <Home /> : <Landing />
-}
+const Index: React.FC<Props> = ({ user }) => (user ? <Home /> : <Landing />);
 
-export default Index
+export const getServerSideProps = dual;
+
+export default Index;
