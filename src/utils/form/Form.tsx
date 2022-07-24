@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { Provider } from 'jotai';
-import * as yup from 'yup';
+import { ZodSchema } from 'zod';
 import { ActionContextProvider } from './ActionContext';
 import { useSetFormData, useSetInitialValues, useUpdateSchema } from './hooks';
 
-export type FormProps<T extends object, Schema extends yup.SchemaOf<T>> = {
+export type FormProps<T extends object, Schema extends ZodSchema<T>> = {
   schema: Schema;
   onSuccess: (data: T) => void | Promise<void>;
-  onError: (error: yup.ValidationError) => void | Promise<void>;
+  onError: (error: Zod.ZodError) => void | Promise<void>;
   initialValues?: Partial<T>;
   defaultValues?: Partial<T>;
   children: React.ReactNode;
 };
 
-const Form = <T extends object, S extends yup.SchemaOf<T>>({
+const Form = <T extends object, S extends ZodSchema<T>>({
   children,
   onError,
   onSuccess,
@@ -31,7 +31,7 @@ const Form = <T extends object, S extends yup.SchemaOf<T>>({
   );
 };
 
-const InitialState = <T extends object, S extends yup.SchemaOf<T>>({
+const InitialState = <T extends object, S extends ZodSchema<T>>({
   schema,
   initialValues,
 }: Pick<FormProps<T, S>, 'schema' | 'initialValues'>) => {
@@ -48,7 +48,7 @@ const InitialState = <T extends object, S extends yup.SchemaOf<T>>({
   }, [initialValues, setFormValues, setInitialValues]);
 
   React.useEffect(() => {
-    // Set yup schema into jotai when form mounts
+    // Set zod schema into jotai when form mounts
     setSchema(schema);
   }, [setSchema, schema]);
 

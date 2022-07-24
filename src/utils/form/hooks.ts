@@ -1,7 +1,8 @@
-import * as yup from 'yup';
+import z from 'zod';
 import { useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
 import React from 'react';
+import set from 'lodash.set';
 import { useFormActions } from './ActionContext';
 import {
   formData,
@@ -42,30 +43,22 @@ export const useSubmit = () => {
       updateIsSubmitting(true);
       if (schema) {
         updateIsValidating(true);
-        schema.validateSync(data, { abortEarly: false });
+        schema.parse(data);
         updateFormErrors({});
         updateIsValidating(false);
       }
       await onSuccess(data);
       reset();
-    } catch (err: unknown) {
-      if (err && typeof err === 'object') {
-        if ('code' in err) {
-          const error = err as FormError;
-          updateFormErrors({ _form: error.message });
-        } else if ('name' in err) {
-          const error = err as yup.ValidationError;
-          if (error.inner) {
-            const formErrors = error.inner.reduce((obj, innerError) => {
-              if (innerError.path) {
-                obj[innerError.path] = innerError.message;
-              }
-              return obj;
-            }, {} as Record<string, string>);
-            updateFormErrors(formErrors);
-            onError(error);
-          }
-        }
+    } catch (error: unknown) {
+      if (error instanceof FormError) {
+        updateFormErrors({ _form: error.message });
+      } else if (error instanceof z.ZodError) {
+        const formErrors = error.issues.reduce((obj, e) => {
+          set(obj, e.path, e.message);
+          return obj;
+        }, {} as Record<string, string>);
+        updateFormErrors(formErrors);
+        onError(error);
       }
     } finally {
       updateIsValidating(false);

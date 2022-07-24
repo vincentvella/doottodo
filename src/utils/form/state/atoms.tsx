@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { SchemaOf } from 'yup';
+import zod from 'zod';
 import { FormState, initialFormState } from './state';
 
 export const formState = atom<FormState>(initialFormState);
@@ -49,7 +49,7 @@ export const formTouched = atom<Record<string, boolean>, Record<string, boolean>
   },
 );
 
-export const formSchema = atom<SchemaOf<object> | undefined, SchemaOf<object> | undefined>(
+export const formSchema = atom<zod.ZodSchema | undefined, zod.ZodSchema | undefined>(
   (get) => get(formState).schema,
   (get, set, schema) => {
     const state = get(formState);

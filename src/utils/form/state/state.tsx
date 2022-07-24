@@ -1,4 +1,4 @@
-import { SchemaOf } from 'yup';
+import zod from 'zod';
 
 export type FormState = {
   initialState: Record<string, unknown>;
@@ -9,7 +9,7 @@ export type FormState = {
   isSubmitting: boolean;
   isValidating: boolean;
   submissions: number;
-  schema?: SchemaOf<object>;
+  schema?: zod.ZodSchema;
 };
 
 export const initialFormState: FormState = {

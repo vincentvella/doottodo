@@ -1,10 +1,9 @@
-import * as yup from 'yup';
 import React, { useContext } from 'react';
-import { TypedSchema } from 'yup/lib/util/types';
+import zod from 'zod';
 
 type Actions = {
-  onSuccess: (data: yup.InferType<TypedSchema>) => void | Promise<void>;
-  onError: (error: yup.ValidationError) => void | Promise<void>;
+  onSuccess: (data: zod.infer<zod.Schema>) => void | Promise<void>;
+  onError: (error: zod.ZodError) => void | Promise<void>;
 };
 
 const ActionContext = React.createContext<Actions | undefined>(undefined);

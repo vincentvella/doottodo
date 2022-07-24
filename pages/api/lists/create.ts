@@ -1,17 +1,17 @@
 import { supabaseServerClient } from '@supabase/auth-helpers-nextjs';
 import { NextApiHandler } from 'next';
-import * as yup from 'yup';
+import zod from 'zod';
 
-const schema = yup.object({
-  title: yup.string().required(),
+const schema = zod.object({
+  title: zod.string(),
 });
 
 const handler: NextApiHandler = async (req, res) => {
-  let validatedData: yup.InferType<typeof schema> | undefined;
+  let validatedData: zod.infer<typeof schema> | undefined;
   try {
-    validatedData = schema.validateSync(req.body, { stripUnknown: true });
+    validatedData = schema.parse(req.body, {});
   } catch (error) {
-    if (error instanceof yup.ValidationError) {
+    if (error instanceof zod.ZodError) {
       res.status(422).json(error);
     }
   }
