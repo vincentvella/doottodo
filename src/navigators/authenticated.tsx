@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '~/screens/Home';
 import useElementColor from '~/hooks/useElementColor';
 import { colors } from '~/theme';
+import Todo from '~/screens/Todo';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ const Authenticated = () => {
   );
   return (
     <Tab.Navigator initialRouteName="progress" screenOptions={screenOptions}>
-      <Tab.Screen component={Home} name="todo" options={{ title: 'Todo' }} />
+      <Tab.Screen component={Todo} name="todo" options={{ title: 'Todo' }} />
       <Tab.Screen component={Home} name="notes" options={{ title: 'Notes' }} />
       <Tab.Screen component={Home} name="progress" options={HomeOptions} />
       <Tab.Screen component={Home} name="saved" options={{ title: 'Saved' }} />

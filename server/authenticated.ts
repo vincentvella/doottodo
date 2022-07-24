@@ -1,6 +1,6 @@
 import { getUser, withPageAuth } from '@supabase/auth-helpers-nextjs';
 
-export const unauthenticated = (redirectTo: string | undefined = '/sign-in') =>
+export const authenticated = (redirectTo: string | undefined = '/sign-in') =>
   withPageAuth({
     authRequired: true,
     redirectTo,
