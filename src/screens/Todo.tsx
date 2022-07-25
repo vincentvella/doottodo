@@ -1,19 +1,19 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { getLists, initialize } from '~/features/todos/api';
+import ListSelector from '~/features/todos/components/ListSelector';
+import useInitializeUserLists from '~/features/todos/hooks/useInitilizeUserLists';
+import useLists from '~/features/todos/hooks/useLists';
 import { View } from '~/react-native';
 
 const Todo = () => {
-  const { data, isError, isFetched, refetch } = useQuery(['lists'], getLists);
-  const initializeLists = useMutation(initialize, { onSuccess: () => refetch() });
-  console.log(isFetched, data?.data);
-  React.useEffect(() => {
-    if (isFetched && !isError && Array.isArray(data?.data) && !data?.data.length) {
-      initializeLists.mutate();
-    }
-  }, [isError, isFetched, data]);
-  console.log(data);
-  return <View></View>;
+  const result = useLists();
+  useInitializeUserLists(result);
+  const { data } = result;
+
+  return (
+    <View>
+      <ListSelector data={data?.data || []} />
+    </View>
+  );
 };
 
 export default Todo;

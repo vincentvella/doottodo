@@ -7,7 +7,9 @@
     "module": "esnext",
     "jsx": "preserve",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "~@gorhom/bottom-sheet": ["./node_modules/@gorhom/bottom-sheet/src"],
+      "~@gorhom/portal": ["./node_modules/@gorhom/portal/src"]
     },
     "isolatedModules": true
   },

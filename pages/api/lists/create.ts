@@ -1,6 +1,7 @@
 import { supabaseServerClient } from '@supabase/auth-helpers-nextjs';
 import { NextApiHandler } from 'next';
 import zod from 'zod';
+import { definitions } from '~/types/supabase';
 
 const schema = zod.object({
   title: zod.string(),
@@ -18,7 +19,7 @@ const handler: NextApiHandler = async (req, res) => {
   if (validatedData) {
     try {
       const { data } = await supabaseServerClient({ req, res })
-        .from('lists')
+        .from<definitions['lists']>('lists')
         .insert([validatedData]);
       res.json(data);
     } catch (error) {

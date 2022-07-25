@@ -6,14 +6,17 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "NEXT_APP=true next dev",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "gen:types": "source .env && npx openapi-typescript $NEXT_PUBLIC_SUPABASE_URL/rest/v1/?apikey=$NEXT_PUBLIC_SUPABASE_ANON_KEY --output src/types/supabase.ts"
   },
   "dependencies": {
     "@bacons/expo-background-color": "^1.0.2",
     "@expo/html-elements": "^0.1.0",
     "@expo/metro-config": "^0.3.18",
-    "@expo/next-adapter": "^4.0.7",
+    "@expo/next-adapter": "^4.0.9",
     "@expo/vector-icons": "^13.0.0",
+    "@gorhom/bottom-sheet": "^4.4.2",
+    "@gorhom/portal": "^1.0.14",
     "@react-native-community/hooks": "^2.8.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.3.2",

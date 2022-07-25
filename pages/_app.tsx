@@ -10,6 +10,8 @@ import Wrapper from '~/utils/wrapper/Wrapper';
 
 // @ts-expect-error
 global.setImmediate = requestAnimationFrame;
+// @ts-expect-error
+global.__DEV__ = process.env.NODE_ENV === 'development';
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (

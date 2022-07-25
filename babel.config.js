@@ -9,7 +9,9 @@ const plugins = [[
       /**
        * Regular expression is used to match all files inside `./src` directory and map each `.src/folder/[..]` to `~folder/[..]` path
        */
-      '~': path.resolve(__dirname, 'src')
+      '~': path.resolve(__dirname, 'src'),
+      '~@gorhom/bottom-sheet': path.resolve(__dirname, 'node_modules/@gorhom/bottom-sheet/src'),
+      '~@gorhom/portal': path.resolve(__dirname, 'node_modules/@gorhom/portal/src'),
     },
     extensions: [
       '.android.js',

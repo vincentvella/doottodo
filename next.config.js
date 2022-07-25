@@ -10,6 +10,8 @@ const withTM = require('next-transpile-modules')([
   'react-native-web',
   "nativewind",
   "@react-native-community/hooks",
+  '@gorhom/bottom-sheet',
+  '@gorhom/portal',
   'solito',
 ], {
   reactStrictMode: true
@@ -23,5 +25,5 @@ module.exports = withPlugins([
 ], {
   images: {
     disableStaticImages: true
-  }
+  },
 });

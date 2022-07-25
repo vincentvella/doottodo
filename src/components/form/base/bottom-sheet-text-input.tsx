@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TextInputProps as RNTextInputProps } from 'react-native';
-import { TextInput as StyledTextInput } from '~/react-native';
+import { BottomSheetTextInput as StyledBSTextInput } from '~/bottom-sheet';
 import { FieldActions } from '~/utils/form';
 import TextInputWrapper from './text-input-wrapper';
 
@@ -13,8 +13,10 @@ export interface TextFieldProps extends Omit<TextInputProps, 'value' | 'error' |
   helperText?: string;
 }
 
-const TextInput = React.forwardRef<Record<string, unknown>, TextFieldProps>((props, ref) => {
-  return <TextInputWrapper ref={ref} Input={StyledTextInput} {...props} />;
-});
+const BottomSheetTextInput = React.forwardRef<Record<string, unknown>, TextFieldProps>(
+  (props, ref) => {
+    return <TextInputWrapper ref={ref} Input={StyledBSTextInput} {...props}></TextInputWrapper>;
+  },
+);
 
-export default TextInput;
+export default BottomSheetTextInput;
