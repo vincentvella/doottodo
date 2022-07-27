@@ -4,6 +4,7 @@ import Home from '~/screens/Home';
 import useElementColor from '~/hooks/useElementColor';
 import { colors } from '~/theme';
 import Todo from '~/screens/Todo';
+import Profile from '~/screens/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,11 +24,11 @@ const Authenticated = () => {
   );
   return (
     <Tab.Navigator initialRouteName="progress" screenOptions={screenOptions}>
-      <Tab.Screen component={Todo} name="todo" options={{ title: 'Todo' }} />
+      <Tab.Screen component={Todo} name="todo" options={{ title: 'Todos' }} />
       <Tab.Screen component={Home} name="notes" options={{ title: 'Notes' }} />
       <Tab.Screen component={Home} name="progress" options={HomeOptions} />
       <Tab.Screen component={Home} name="saved" options={{ title: 'Saved' }} />
-      <Tab.Screen component={Home} name="profile" options={{ title: 'Profile' }} />
+      <Tab.Screen component={Profile} name="profile" options={{ title: 'Profile' }} />
     </Tab.Navigator>
   );
 };

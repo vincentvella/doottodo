@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import zod from 'zod';
 import { Portal } from '~@gorhom/portal';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import useElementColor from '~/hooks/useElementColor';
@@ -10,10 +9,9 @@ import BottomSheetTextInput from '~/components/form/base/bottom-sheet-text-input
 import { BottomSheetBackdrop, BottomSheetBackdropProps } from '~@gorhom/bottom-sheet';
 import Button from '~/components/form/base/button';
 import { Platform } from 'react-native';
-
-const schema = zod.object({
-  title: zod.string(),
-});
+import { AddTodo, addTodo } from '../validations';
+import { create, getLists } from '../api';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const Backdrop: React.FC<BottomSheetBackdropProps> = (props) => {
   if (Platform.OS === 'web') {
@@ -33,18 +31,31 @@ const Backdrop: React.FC<BottomSheetBackdropProps> = (props) => {
 
 const AddListButton = () => {
   const color = useElementColor();
+  const { refetch } = useQuery(['lists'], getLists, { enabled: false });
+  const { mutate } = useMutation(create, {
+    onSuccess: () => {
+      refetch();
+    },
+  });
   const sheetRef = useRef<BottomSheet>(null);
 
-  // variables
   const snapPoints = useMemo(() => ['50%'], []);
 
-  // callbacks
   const handlePress = useCallback(() => {
     sheetRef.current?.snapToIndex(0);
   }, []);
+
   const handleClose = useCallback(() => {
     sheetRef.current?.close();
   }, []);
+
+  const handleOnSuccess = useCallback(
+    (data: AddTodo) => {
+      mutate(data);
+      handleClose();
+    },
+    [handleClose],
+  );
 
   return (
     <>
@@ -55,8 +66,7 @@ const AddListButton = () => {
       </View>
       <Portal>
         <BottomSheet
-          // handleStyle="bg-light dark:bg-neutral-800"
-          backgroundStyle="bg-light dark:bg-neutral-800"
+          backgroundStyle="bg-neutral-100 dark:bg-neutral-800"
           ref={sheetRef}
           index={-1}
           backdropComponent={Backdrop}
@@ -70,7 +80,7 @@ const AddListButton = () => {
                 <FontAwesome name="close" color={color} size={21} onPress={handleClose} />
               </View>
             </View>
-            <Form schema={schema} onSuccess={console.log} onError={console.error}>
+            <Form schema={addTodo} onSuccess={handleOnSuccess} onError={console.error}>
               <BottomSheetTextInput label="Title" name="title" />
               <Button />
             </Form>

@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { H1 as EH1, H3 as EH3 } from '@expo/html-elements';
 import Animated from 'react-native-reanimated';
-import { BottomSheetView as BottomSheetViewOG } from '~@gorhom/bottom-sheet';
 import { custom } from './utils/custom-styled-hoc';
 import { PressableOpacity as NativePressableOpacity } from 'react-native-pressable-opacity';
 
@@ -24,8 +23,8 @@ export function FlatList<T>() {
 }
 
 // Text bindings
-export const Text = custom(styled(RNText, 'text-dark dark:text-light'));
-export const AnimatedText = custom(styled(Animated.Text, 'text-dark dark:text-light'));
-export const TextInput = custom(styled(RNTextInput, 'text-dark dark:text-light'));
-export const H1 = custom(styled(EH1, 'text-dark dark:text-light'));
-export const H3 = custom(styled(EH3, 'text-dark dark:text-light'));
+export const Text = custom(styled(RNText, 'text-neutral-900 dark:text-neutral-100'));
+export const AnimatedText = custom(styled(Animated.Text, 'text-neutral-900 dark:text-neutral-100'));
+export const TextInput = custom(styled(RNTextInput, 'text-neutral-900 dark:text-neutral-100'));
+export const H1 = custom(styled(EH1, 'text-neutral-900 dark:text-neutral-100 my-2'));
+export const H3 = custom(styled(EH3, 'text-neutral-900 dark:text-neutral-100'));

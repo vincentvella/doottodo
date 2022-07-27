@@ -5,10 +5,11 @@ import BackButton from './BackButton';
 type HeaderProps = {
   title: string;
   subtitle?: string;
+  backEnabled?: boolean;
 };
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => (
+const Header: React.FC<HeaderProps> = ({ title, subtitle, backEnabled = true }) => (
   <>
-    <BackButton />
+    {backEnabled && <BackButton />}
     <View className="items-center p-4">
       <H1>{title}</H1>
       {subtitle !== undefined && <H3>{subtitle}</H3>}

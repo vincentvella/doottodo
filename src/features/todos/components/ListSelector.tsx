@@ -1,9 +1,10 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import useElementColor from '~/hooks/useElementColor';
 import { FlatList, Text, View } from '~/react-native';
 import { FlatListProps } from '~/types/flatlist';
 import { definitions } from '~/types/supabase';
-import { useIsActiveList } from '../state/activeList';
+import { useActiveList, useIsActiveList } from '../state/activeList';
 import AddListButton from './AddListButton';
 import BubbleHighlight from './BubbleHighlight';
 
@@ -14,16 +15,16 @@ type ListsListProps = FlatListProps<definitions['lists']>;
 const keyExtractor: ListsListProps['keyExtractor'] = ({ id }) => id;
 
 const Item = (props: definitions['lists']) => {
-  const isActive = useIsActiveList(props.id);
+  const [isActive, setIsActive] = useActiveList(props.id);
   const color = useElementColor(isActive);
   return (
-    <View key={props.id}>
+    <TouchableOpacity onPress={() => setIsActive()} key={props.id}>
       <BubbleHighlight visible={isActive}>
         <Text className="text-lg px-2" style={{ color }}>
           {props.title}
         </Text>
       </BubbleHighlight>
-    </View>
+    </TouchableOpacity>
   );
 };
 

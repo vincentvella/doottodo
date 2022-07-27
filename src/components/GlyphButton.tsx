@@ -16,7 +16,7 @@ const GlyphButton: React.FC<GlyphButtonProps> = ({ route, logo, title }) => {
   return (
     <View className=" space-2 ">
       <Link href={route}>
-        <View className="rounded-2xl flex-row p-4 items-center w-full flex-1 border-dark dark:border-light border">
+        <View className="rounded-2xl flex-row p-4 items-center w-full flex-1 border-neutral-900 dark:border-neutral-100 border">
           <View className="absolute left-4">
             <FontAwesome color={color} name={logo} size={24} style={{ marginTop: -4 }} />
           </View>

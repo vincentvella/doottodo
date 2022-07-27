@@ -28,7 +28,7 @@ const TextInputWrapper = React.forwardRef<Record<string, unknown>, TextFieldProp
           ref={ref}
           value={value}
           onChangeText={setValue}
-          className="border border-dark dark:border-light rounded text-lg p-3"
+          className="border border-neutral-900 dark:border-neutral-100 rounded text-lg p-3"
           style={{ lineHeight: 18 }}
         />
         <HelperText visible={!!error} type="error">

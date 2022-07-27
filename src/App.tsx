@@ -5,7 +5,7 @@ import { SafeAreaView } from '~/react-native';
 
 const App = () => (
   <Wrapper>
-    <SafeAreaView className="h-full overflow-hidden bg-light dark:bg-dark">
+    <SafeAreaView className="h-full overflow-hidden bg-neutral-100 dark:bg-neutral-900">
       <Navigators />
     </SafeAreaView>
   </Wrapper>

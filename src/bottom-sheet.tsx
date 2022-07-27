@@ -26,7 +26,7 @@ const BottomSheetWrapper = React.forwardRef(
 export type BottomSheet = BottomSheetMethods;
 export type CorrectedBottomSheet = ForwardRef<
   unknown,
-  Omit<StyledProps<BottomSheetProps>, 'backgroundStyle' | 'handleStyle'> & {
+  Omit<StyledProps<BottomSheetProps>, 'backgroundStyle'> & {
     backgroundStyle?: string;
     handleStyle?: string;
   }
@@ -36,5 +36,8 @@ export type CorrectedBottomSheet = ForwardRef<
 export const BottomSheet = styled(BottomSheetWrapper, {
   props: ['backgroundStyle'],
 }) as CorrectedBottomSheet;
-export const BottomSheetView = styled(OGBottomSheetView, 'bg-light dark:bg-neutral-800');
-export const BottomSheetTextInput = styled(OGBottomSheetTextInput, 'text-dark dark:text-light');
+export const BottomSheetView = styled(OGBottomSheetView, 'bg-neutral-100 dark:bg-neutral-800');
+export const BottomSheetTextInput = styled(
+  OGBottomSheetTextInput,
+  'text-bg-neutral-900 dark:text-neutral-100',
+);

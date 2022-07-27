@@ -21,7 +21,7 @@ const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <UserProvider supabaseClient={Supabase}>
           <BackgroundColor />
           <StatusBar barStyle={getStatusBar(scheme)} />
-          <View className="h-full overflow-hidden bg-light dark:bg-dark">
+          <View className="h-full overflow-hidden bg-neutral-100 dark:bg-neutral-900">
             <PortalProvider>
               <QueryClientProvider client={queryClient}>
                 <>{children}</>

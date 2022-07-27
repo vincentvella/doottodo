@@ -8,9 +8,9 @@ const BackButton = () => {
   const { back } = useRouter();
   const color = useElementColor();
   return (
-    <View style={{ zIndex }}>
-      <View className="absolute top-4 left-3">
-        <TouchableOpacity onPress={back}>
+    <View className="absolute" style={{ zIndex }}>
+      <View className="p-4">
+        <TouchableOpacity className="py-2" onPress={back}>
           <FontAwesome name="arrow-left" size={30} color={color} />
         </TouchableOpacity>
       </View>
