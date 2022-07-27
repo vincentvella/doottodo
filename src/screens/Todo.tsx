@@ -11,7 +11,7 @@ const Todo = () => {
 
   return (
     <View>
-      <ListSelector data={data?.data || []} />
+      <ListSelector loading={result.isLoading} data={data?.data || []} />
     </View>
   );
 };
