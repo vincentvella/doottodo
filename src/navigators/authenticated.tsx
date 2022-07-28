@@ -3,10 +3,31 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '~/screens/Home';
 import useElementColor from '~/hooks/useElementColor';
 import { colors } from '~/theme';
-import Todo from '~/screens/Todo';
 import Profile from '~/screens/Profile';
+import { TodoStack, linkingConfig as todoLinkingConfig, TodoStackParams } from './todo';
+import { RouteConfig } from './types';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
-const Tab = createBottomTabNavigator();
+export type AuthenticatedTabsParams = {
+  todoRoot: NavigatorScreenParams<TodoStackParams>;
+  notes: undefined;
+  progress: undefined;
+  saved: undefined;
+  profile: undefined;
+};
+
+export const linkingConfig: RouteConfig<AuthenticatedTabsParams> = {
+  initialRouteName: 'todoRoot',
+  screens: {
+    todoRoot: todoLinkingConfig,
+    notes: { exact: true, path: 'notes' },
+    progress: { exact: true, path: 'progress' },
+    saved: { exact: true, path: 'saved' },
+    profile: { exact: true, path: 'profile' },
+  },
+};
+
+const Tab = createBottomTabNavigator<AuthenticatedTabsParams>();
 
 const HomeOptions = { title: 'Progress', headerTitle: 'DootTodo' };
 
@@ -24,7 +45,11 @@ const Authenticated = () => {
   );
   return (
     <Tab.Navigator initialRouteName="progress" screenOptions={screenOptions}>
-      <Tab.Screen component={Todo} name="todo" options={{ title: 'Todos' }} />
+      <Tab.Screen
+        component={TodoStack}
+        name="todoRoot"
+        options={{ title: 'Todos', headerShown: false }}
+      />
       <Tab.Screen component={Home} name="notes" options={{ title: 'Notes' }} />
       <Tab.Screen component={Home} name="progress" options={HomeOptions} />
       <Tab.Screen component={Home} name="saved" options={{ title: 'Saved' }} />

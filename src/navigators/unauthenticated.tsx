@@ -7,7 +7,7 @@ import SignUpEmail from '~/screens/SignUpEmail';
 import { RouteConfig } from './types';
 import SignInEmail from '~/screens/SignInEmail';
 
-type UnauthenticatedStackParams = {
+export type UnauthenticatedStackParams = {
   landing: undefined;
   'sign-up': undefined;
   'sign-in': undefined;

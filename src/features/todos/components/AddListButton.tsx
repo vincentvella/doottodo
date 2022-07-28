@@ -9,7 +9,7 @@ import BottomSheetTextInput from '~/components/form/base/bottom-sheet-text-input
 import { BottomSheetBackdrop, BottomSheetBackdropProps } from '~@gorhom/bottom-sheet';
 import Button from '~/components/form/base/button';
 import { Platform } from 'react-native';
-import { AddTodo, addTodo } from '../validations';
+import { AddList, addList } from '../validations';
 import { create, getLists } from '../api';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -50,7 +50,7 @@ const AddListButton = () => {
   }, []);
 
   const handleOnSuccess = useCallback(
-    (data: AddTodo) => {
+    (data: AddList) => {
       mutate(data);
       handleClose();
     },
@@ -80,7 +80,7 @@ const AddListButton = () => {
                 <FontAwesome name="close" color={color} size={21} onPress={handleClose} />
               </View>
             </View>
-            <Form schema={addTodo} onSuccess={handleOnSuccess} onError={console.error}>
+            <Form schema={addList} onSuccess={handleOnSuccess} onError={console.error}>
               <BottomSheetTextInput label="Title" name="title" />
               <Button />
             </Form>
