@@ -34,8 +34,10 @@ export type CorrectedBottomSheet = ForwardRef<
 
 // Reanimated Bindings
 export const BottomSheet = styled(BottomSheetWrapper, {
-  props: ['backgroundStyle'],
-}) as CorrectedBottomSheet;
+  props: {
+    backgroundStyle: true,
+  },
+});
 export const BottomSheetView = styled(OGBottomSheetView, 'bg-neutral-100 dark:bg-neutral-800');
 export const BottomSheetTextInput = styled(
   OGBottomSheetTextInput,

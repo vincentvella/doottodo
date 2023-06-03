@@ -2,21 +2,23 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Animated, { SlideInUp } from 'react-native-reanimated';
 import DelayedEntrance from '~/components/DelayedEntrance';
+import { Lists, ListsEdge } from '~/generated/graphql';
 import useElementColor from '~/hooks/useElementColor';
 import { FlatList, Text } from '~/react-native';
 import { FlatListProps } from '~/types/flatlist';
-import { definitions } from '~/types/supabase';
 import { useActiveList } from '../state/activeList';
 import AddListButton from './AddListButton';
 import BubbleHighlight from './BubbleHighlight';
 
-const ListsList = FlatList<definitions['lists']>();
+type ListNodes = ListsEdge['node'];
 
-type ListsListProps = FlatListProps<definitions['lists']>;
+const ListsList = FlatList<ListNodes>();
+
+type ListsListProps = FlatListProps<ListNodes>;
 
 const keyExtractor: ListsListProps['keyExtractor'] = ({ id }) => id;
 
-type ItemProps = definitions['lists'] & {
+type ItemProps = ListNodes & {
   index: number;
 };
 
@@ -42,10 +44,8 @@ const renderItem: ListsListProps['renderItem'] = ({ item, index }) => (
   <Item index={index} {...item} />
 );
 
-const ListSelector: React.FC<{ data: definitions['lists'][]; loading: boolean }> = ({
-  data,
-  loading,
-}) => {
+const ListSelector: React.FC<{ data: ListNodes[]; loading: boolean }> = ({ data, loading }) => {
+  const lists = React.useMemo<Lists[]>(() => data.filter((d) => !!d), [data]);
   return (
     <ListsList
       horizontal

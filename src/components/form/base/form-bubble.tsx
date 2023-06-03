@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, View } from '~/react-native';
 import { useFieldError } from '~/utils/form';
 import { platformColor } from '~/utils/platform-color';

@@ -9,7 +9,7 @@ import StyleLoader from './StyleLoader';
 import BackgroundColor from './BackgroundColor';
 
 const getStatusBar = (scheme: ColorSchemeName): StatusBarStyle =>
-  scheme === 'dark' ? 'dark-content' : 'light-content';
+  scheme === 'dark' ? 'light-content' : 'dark-content';
 
 const queryClient = new QueryClient();
 

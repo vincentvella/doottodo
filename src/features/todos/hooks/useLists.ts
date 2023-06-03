@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLists } from '../api';
+import { getLists, getTasksForList } from '../api';
 
 const useLists = () => useQuery(['lists'], getLists);
 

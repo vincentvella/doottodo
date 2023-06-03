@@ -1,0 +1,18 @@
+schema:
+  - '${NEXT_PUBLIC_SUPABASE_URL}/graphql/v1':
+      headers:
+        apiKey: '${NEXT_PUBLIC_SUPABASE_ANON_KEY}'
+        authorization: 'Bearer: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}'
+documents: 'src/**/*.graphql'
+generates:
+  src/generated/graphql.ts:
+    preset: near-operation-file
+    presetConfig:
+      extension: .generated.tsx
+      baseTypesPath: types.ts
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-urql'
+    config:
+      withHooks: true

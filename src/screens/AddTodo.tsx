@@ -1,20 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import { useRouter } from 'solito/router';
 import Button from '~/components/form/base/button';
 import TextInput from '~/components/form/base/text-input';
+import { createTask } from '~/features/todos/api';
 import { AddTodo, addTodo } from '~/features/todos/validations';
 import { View } from '~/react-native';
 import { Form } from '~/utils/form';
 
 const AddTodoPage = () => {
-  // const { refetch } = useQuery(['todos'], getTodos, { enabled: false });
-  // const { mutate } = useMutation(create, {
-  //   onSuccess: () => {
-  //     refetch();
-  //   },
-  // });
-  const handleOnSuccess = React.useCallback((data: AddTodo) => {
-    console.log(data);
+  const queryClient = useQueryClient();
+  const { back } = useRouter();
+  const { mutateAsync } = useMutation(createTask, {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(['tasks']);
+      back();
+    },
+    onError: console.error,
+  });
+  const handleOnSuccess = React.useCallback(async (data: AddTodo) => {
+    console.log({ data });
+    await mutateAsync({ started: false, ...data });
   }, []);
   return (
     <View className="p-4">

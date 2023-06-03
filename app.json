@@ -2,6 +2,7 @@
   "expo": {
     "name": "DootTodo",
     "slug": "DootTodo",
+    "scheme": "doottodo",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
@@ -32,6 +33,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "SUPABASE_URL": "https://esawcehlkskpqszwfrot.supabase.co",
+      "SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzYXdjZWhsa3NrcHFzendmcm90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTUyNjc5ODksImV4cCI6MTk3MDg0Mzk4OX0.gib9Qa5g5SySg7YO-kJMcl3GJ8U9_G4ctjfL0hCmuLg"
     }
   }
 }

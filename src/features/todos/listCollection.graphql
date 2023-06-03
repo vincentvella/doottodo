@@ -1,0 +1,13 @@
+query Lists {
+  listsCollection {
+    pageInfo {
+      hasNextPage
+    }
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}

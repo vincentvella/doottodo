@@ -6,33 +6,16 @@ import { Text, TouchableOpacity, View } from '~/react-native';
 import { BottomSheet, BottomSheetView } from '~/bottom-sheet';
 import { Form } from '~/utils/form';
 import BottomSheetTextInput from '~/components/form/base/bottom-sheet-text-input';
-import { BottomSheetBackdrop, BottomSheetBackdropProps } from '~@gorhom/bottom-sheet';
 import Button from '~/components/form/base/button';
-import { Platform } from 'react-native';
 import { AddList, addList } from '../validations';
-import { create, getLists } from '../api';
+import { createList, getLists } from '../api';
 import { useMutation, useQuery } from '@tanstack/react-query';
-
-const Backdrop: React.FC<BottomSheetBackdropProps> = (props) => {
-  if (Platform.OS === 'web') {
-    return null;
-  }
-  return (
-    <BottomSheetBackdrop
-      {...props}
-      disappearsOnIndex={-1}
-      appearsOnIndex={0}
-      enableTouchThrough={false}
-      pressBehavior="close"
-      opacity={0.5}
-    />
-  );
-};
+import Backdrop from './Backdrop';
 
 const AddListButton = () => {
   const color = useElementColor();
   const { refetch } = useQuery(['lists'], getLists, { enabled: false });
-  const { mutate } = useMutation(create, {
+  const { mutate } = useMutation(createList, {
     onSuccess: () => {
       refetch();
     },

@@ -1,26 +1,30 @@
 import React from 'react';
 import { Button } from 'react-native';
 import { useRouter } from 'solito/router';
+import AddTodoButton from '~/features/todos/components/AddTodoButton';
 import ListSelector from '~/features/todos/components/ListSelector';
+import TodoList from '~/features/todos/components/TodoList';
 import useInitializeUserLists from '~/features/todos/hooks/useInitilizeUserLists';
-import useLists from '~/features/todos/hooks/useLists';
+import useTasksForList from '~/features/todos/hooks/useTasksForList';
+import { useListsQuery } from '~/generated/graphql';
 import { View } from '~/react-native';
 
 const Todo = () => {
-  const result = useLists();
   const { push } = useRouter();
-  useInitializeUserLists(result);
-  const { data } = result;
-
+  const [{ fetching: isLoadingList, data: lists }] = useListsQuery();
+  // useInitializeUserLists(listResult);
+  const { data: tasks, isLoading: isLoadingTasks } = useTasksForList();
   const navigateToAdd = React.useCallback(() => {
-    push('/add');
+    push('/todos/add');
   }, []);
   return (
-    <View>
-      <ListSelector loading={result.isLoading} data={data?.data || []} />
-      <Button title="Add Todo" onPress={navigateToAdd} />
-      {/* <TodoList /> */}
-    </View>
+    <>
+      <View>
+        <ListSelector loading={isLoadingList} data={lists?.listsCollection?.edges || []} />
+        <TodoList data={tasks?.data || []} loading={isLoadingTasks} />
+      </View>
+      <AddTodoButton onPress={navigateToAdd} />
+    </>
   );
 };
 
